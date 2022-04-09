@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-import {stat, writeFileSync} from 'fs';
+const fs = require('fs');
 
 async function run() {
     try {
@@ -9,7 +9,7 @@ async function run() {
         const stagingPercentage = core.getInput('staging-percentage');
         const version = core.getInput('version');
 
-        const fileStats = await stat(artifact);
+        const fileStats = await fs.stat(artifact);
         if (fileStats.isDirectory()) {
             core.debug(
                 `Removing ${artifact} because it is a directory`
@@ -25,7 +25,7 @@ async function run() {
             stagingPercentage,
         }
         result[algorithm] = hash;
-        writeFileSync("latest.yml", JSON.stringify(result), {encoding: "utf8"});
+        fs.writeFileSync("latest.yml", JSON.stringify(result), {encoding: "utf8"});
     } catch (error) {
         core.setFailed(error.message);
     }
