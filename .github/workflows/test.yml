@@ -1,0 +1,21 @@
+name: Release
+
+on: 
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: y-not-u/electron-builder-latest-yml-action@v1
+        with:
+          version: ${{github.ref_name}}
+          artifact: package.json
+          hash-type: sha512
+          staging-percentage: 80
+      - uses: actions/upload-artifact@v2
+        with:
+          name: latest.yml
+          path: latest.yml

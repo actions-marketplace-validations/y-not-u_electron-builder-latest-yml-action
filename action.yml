@@ -1,0 +1,20 @@
+name: 'Generate a latest.yml for an artifact'
+description: 'Electron auto updater needs the latest.yml file to check'
+author: 'y-not-u'
+inputs:
+  artifact:
+    description: 'Artifact file'
+    required: true
+  version:
+    description: 'New version'
+    required: true
+  hash-type:
+    description: 'Hash type' 
+    default: 'sha512'
+  staging-percentage:
+    description: 'Staging Percentage'
+    default: 100
+
+runs:
+  using: 'node16'
+  main: 'src/index.js'

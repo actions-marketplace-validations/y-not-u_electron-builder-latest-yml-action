@@ -1,0 +1,19 @@
+{
+  "name": "electron-builder-latest-yml-action",
+  "version": "1.0.0",
+  "description": "A GitHub action to generate latest.yml file for artifacts",
+  "main": "src/index.js",
+  "scripts": {},
+  "keywords": [
+    "electron",
+    "latest.yml",
+    "electron-builder"
+  ],
+  "author": "y-not-u",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.1",
+    "hasha": "^5.2.2"
+  }
+}
