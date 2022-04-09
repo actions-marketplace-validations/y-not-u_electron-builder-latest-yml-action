@@ -11,6 +11,9 @@ inputs:
   hash-type:
     description: 'Hash type' 
     default: 'sha512'
+  yml-file:
+    description: 'yaml file name'
+    default: 'latest.yml'
   staging-percentage:
     description: 'Staging Percentage'
     default: 100

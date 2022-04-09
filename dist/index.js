@@ -1905,15 +1905,16 @@ async function run() {
         const artifact = core.getInput('artifact');
         const stagingPercentage = core.getInput('staging-percentage');
         const version = core.getInput('version');
+        const yamlFile = core.getInput('yml-file');
 
         core.info(`Artifact is ${artifact}`);
 
         const hash = await hasha.fromFile(artifact, {algorithm});
 
-        fs.writeFileSync("latest.yml", `version: ${version}\n`, {encoding: "utf8", flag: "a"});
-        fs.writeFileSync("latest.yml", `path: ${artifact}\n`, {encoding: "utf8", flag: "a"});
-        fs.writeFileSync("latest.yml", `${algorithm}: ${hash}\n`, {encoding: "utf8", flag: "a"});
-        fs.writeFileSync("latest.yml", `stagingPercentage: ${stagingPercentage}\n`, {encoding: "utf8", flag: "a"});
+        fs.writeFileSync(yamlFile, `version: ${version}\n`, {encoding: "utf8", flag: "a"});
+        fs.writeFileSync(yamlFile, `path: ${artifact}\n`, {encoding: "utf8", flag: "a"});
+        fs.writeFileSync(yamlFile, `${algorithm}: ${hash}\n`, {encoding: "utf8", flag: "a"});
+        fs.writeFileSync(yamlFile, `stagingPercentage: ${stagingPercentage}\n`, {encoding: "utf8", flag: "a"});
     } catch (error) {
         core.setFailed(error.message);
     }
