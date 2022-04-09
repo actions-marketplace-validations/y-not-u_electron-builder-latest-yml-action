@@ -9,13 +9,6 @@ async function run() {
         const stagingPercentage = core.getInput('staging-percentage');
         const version = core.getInput('version');
 
-        const fileStats = await fs.stat(artifact);
-        if (fileStats.isDirectory()) {
-            core.debug(
-                `Removing ${artifact} because it is a directory`
-            )
-            core.setFailed('No artifact found');
-        }
         core.debug(`Artifact is ${artifact}`);
 
         const hash = await hasha.fromFile(artifact, {algorithm});
