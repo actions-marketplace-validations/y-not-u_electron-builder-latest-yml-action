@@ -22,7 +22,7 @@ jobs:
       - uses: y-not-u/electron-builder-latest-yml-action@v1
         with:
           version: ${{github.ref_name}}
-          artifact: *.md
+          artifact: "*.md"
           hash-type: sha256
           staging-percentage: 10
           yml-file: latest-md.yml
