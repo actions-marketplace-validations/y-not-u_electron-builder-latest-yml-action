@@ -2,18 +2,28 @@
   "name": "electron-builder-latest-yml-action",
   "version": "1.0.0",
   "description": "A GitHub action to generate latest.yml file for artifacts",
-  "main": "src/index.js",
-  "scripts": {},
+  "main": "dist/index.js",
+  "scripts": {
+    "release": "ncc build src/index.js"
+  },
   "keywords": [
     "electron",
     "latest.yml",
     "electron-builder"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/y-not-u/electron-builder-latest-yml-action"
+  },
+  "homepage": "https://github.com/y-not-u/electron-builder-latest-yml-action#readme",
   "author": "y-not-u",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.1",
     "hasha": "^5.2.2"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.22.3"
   }
 }

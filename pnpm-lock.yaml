@@ -3,12 +3,16 @@ lockfileVersion: 5.3
 specifiers:
   '@actions/core': ^1.6.0
   '@actions/github': ^5.0.1
+  '@zeit/ncc': ^0.22.3
   hasha: ^5.2.2
 
 dependencies:
   '@actions/core': 1.6.0
   '@actions/github': 5.0.1
   hasha: 5.2.2
+
+devDependencies:
+  '@zeit/ncc': 0.22.3
 
 packages:
 
@@ -122,6 +126,12 @@ packages:
     dependencies:
       '@octokit/openapi-types': 11.2.0
     dev: false
+
+  /@zeit/ncc/0.22.3:
+    resolution: {integrity: sha512-jnCLpLXWuw/PAiJiVbLjA8WBC0IJQbFeUwF4I9M+23MvIxTxk5pD4Q8byQBSPmHQjz5aBoA7AKAElQxMpjrCLQ==}
+    deprecated: '@zeit/ncc is no longer maintained. Please use @vercel/ncc instead.'
+    hasBin: true
+    dev: true
 
   /before-after-hook/2.2.2:
     resolution: {integrity: sha512-3pZEU3NT5BFUo/AD5ERPWOgQOCZITni6iavr5AUw5AUwQjMlI0kzu5btnyD39AF0gUEsDPwJT+oY1ORBJijPjQ==}
