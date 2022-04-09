@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const glob = require('glob')
 const fs = require('fs');
 const hasha = require('hasha');
 
@@ -11,12 +12,20 @@ async function run() {
         const version = core.getInput('version');
         const yamlFile = core.getInput('yml-file');
 
-        core.info(`Artifact is ${artifact}`);
+        const files = await glob.sync(artifact);
+        if (files.length === 0) {
+            core.setFailed(`No file found`);
+            return;
+        }
+        const file = files[0]
+        const filename = file.split(/(\\|\/)/g).pop()
 
-        const hash = await hasha.fromFile(artifact, {algorithm});
+        core.info(`Artifact is ${filename}`);
+
+        const hash = await hasha.fromFile(file, {algorithm});
 
         fs.writeFileSync(yamlFile, `version: ${version}\n`, {encoding: "utf8", flag: "a"});
-        fs.writeFileSync(yamlFile, `path: ${artifact}\n`, {encoding: "utf8", flag: "a"});
+        fs.writeFileSync(yamlFile, `path: ${filename}\n`, {encoding: "utf8", flag: "a"});
         fs.writeFileSync(yamlFile, `${algorithm}: ${hash}\n`, {encoding: "utf8", flag: "a"});
         fs.writeFileSync(yamlFile, `stagingPercentage: ${stagingPercentage}\n`, {encoding: "utf8", flag: "a"});
     } catch (error) {
